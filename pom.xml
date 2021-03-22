@@ -5,6 +5,9 @@
     <groupId>com.home</groupId>
     <artifactId>spring-cloud-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>spring-cloud-eureka</module>
+    </modules>
     <name>spring-cloud-parent</name>
     <description>springCloud父工程</description>
     <packaging>pom</packaging>
