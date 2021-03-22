@@ -13,7 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-cloud-common</name>
     <description>springclould common</description>
-    <packaging>pom</packaging>
+
 
     <dependencies>
         <dependency>
