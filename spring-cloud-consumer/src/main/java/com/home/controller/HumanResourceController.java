@@ -15,7 +15,7 @@ public class HumanResourceController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @RequestMapping
+    @RequestMapping("/consumer/get/employee/remote")
     public Employee getEmployeeRemote() {
         //1.声明远程微服务主机地址加端口号
         String host = "http://localhost:1000";
