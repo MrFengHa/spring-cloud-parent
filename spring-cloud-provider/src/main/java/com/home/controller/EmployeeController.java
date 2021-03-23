@@ -1,6 +1,8 @@
 package com.home.controller;
 
 import com.home.entity.Employee;
+import com.home.util.ResultEntity;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,7 +38,6 @@ public class EmployeeController {
 
     @RequestMapping("/provider/get/emp/list/remote")
     List<Employee> getEmpListRemote(@RequestParam("keyword") String keyword) {
-        log.error("keyword" + keyword);
         List<Employee> employeeList = new ArrayList<Employee>();
         for (int i = 0; i < 10; i++) {
             int num = i * 100 + i * 10 + i;
@@ -44,5 +45,31 @@ public class EmployeeController {
         }
         return employeeList;
     }
+
+    /**
+     * HystrixCommand 注解指定当前方法出问题时调用备份方法
+     * @param signal
+     * @return
+     * @throws InterruptedException
+     */
+    @HystrixCommand(fallbackMethod = "getEmpWithCircuitBreakerBackUp")
+    @RequestMapping("/provider/get/emp/with/circuit/breaker")
+    public ResultEntity<Employee> getEmpWithCircuitBreaker(@RequestParam("signal") String signal) throws InterruptedException {
+        String qb = "quick bang";
+        if (qb.equals(signal)) {
+            throw new RuntimeException();
+        }
+        String sb = "slow bang";
+        if (sb.equals(signal)) {
+            Thread.sleep(5000);
+        }
+        return ResultEntity.ok().data(new Employee(666, "empName666", 666.66));
+    }
+
+    public ResultEntity<Employee> getEmpWithCircuitBreakerBackUp(@RequestParam("signal") String signal) {
+        return ResultEntity.error("失败了");
+
+    }
+
 
 }
