@@ -1,0 +1,22 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: zuul-gateway
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5000/eureka/
+
+
+#自定义路由名称
+zuul:
+  routes:
+    employee:
+      service-id: rootfeng-feign-consumer  #微服务名称
+      path: /zuul-emp/**                  #自定义的地址
+
+  ignored-services: '*' #让所有访问不能通过微服务的名称访问
+  prefix: /maomi  #添加前缀

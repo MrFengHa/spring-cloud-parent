@@ -9,6 +9,7 @@
         <module>spring-cloud-eureka</module>
         <module>spring-cloud-fegin-consumer</module>
         <module>spring-cloud-dashboard</module>
+        <module>spring-cloud-zuul</module>
     </modules>
     <name>spring-cloud-parent</name>
     <description>springCloud父工程</description>
