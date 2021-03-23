@@ -8,3 +8,9 @@ eureka:
 spring:
   application:
     name: rootFeng-provider
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+
