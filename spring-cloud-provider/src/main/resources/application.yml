@@ -1,2 +1,10 @@
 server:
   port: 1000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5000/eureka
+
+spring:
+  application:
+    name: rootFeng-provider
