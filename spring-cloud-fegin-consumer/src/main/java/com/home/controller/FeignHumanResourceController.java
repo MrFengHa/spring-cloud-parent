@@ -2,6 +2,7 @@ package com.home.controller;
 
 import com.home.api.EmployeeRemoteService;
 import com.home.entity.Employee;
+import com.home.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,5 +33,13 @@ public class FeignHumanResourceController {
 
         return employeeRemoteService.getEmpListRemote(keyword);
     }
+
+    @RequestMapping("/feign/consumer/get/fallback")
+    public ResultEntity<Employee> getEmpWithCircuitBreaker(String signal){
+
+        return employeeRemoteService.getEmpWithCircuitBreaker(signal);
+    }
+
+
 
 }
